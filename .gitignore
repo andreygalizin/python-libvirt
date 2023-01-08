@@ -1,2 +1,6 @@
+### any image file ###
+*.img
+*.iso
+*.qcow2
 ### VS Code ###
 .vscode/

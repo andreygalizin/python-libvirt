@@ -1,8 +1,8 @@
 <domain type='kvm'>
-  <name>vm_name</name>
-  <memory unit='MiB'>2048</memory>
-  <currentMemory unit='MiB'>2048</currentMemory>
-  <vcpu>2</vcpu>
+  <name>{{ vm_name }}</name>
+  <memory unit='KiB'>{{ vm_required_memory }}</memory>
+  <currentMemory unit='KiB'>{{ vm_required_memory }}</currentMemory>
+  <vcpu>{{ vm_required_vcpu }}</vcpu>
   <os>
     <type arch='x86_64'>hvm</type>
     <boot dev='hd'/>
@@ -12,10 +12,10 @@
   <on_reboot>restart</on_reboot>
   <on_crash>destroy</on_crash>
   <devices>
-    <emulator>/usr/bin/kvm-spice</emulator>
+    <emulator>/usr/bin/qemu-kvm</emulator>
   <disk type='file' device='disk'>
        <driver name='qemu' type='qcow2'/>
-       <source file='/home/ubuntu/repositories/python-libvirt/cloud-image/bionic-server-cloudimg-amd64.img'/>
+       <source file='{{ location_of_backing_image }}'/>
        <target dev='vda' bus='virtio'/>
   </disk>
   <interface type='bridge'>
